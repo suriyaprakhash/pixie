@@ -12,6 +12,4 @@ const nextConfig = {
   assetPrefix: isProd ? 'https://cdn.jsdelivr.net/gh/suriyaprakhash/pixie-generator@gh-pages' : undefined,
 }
 
-
-
-  export default nextConfig;
+export default nextConfig;
