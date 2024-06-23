@@ -26,8 +26,8 @@ function base64urlencode(arrayBuffer: ArrayBuffer): string {
 }
 
 // Function to generate PKCE code verifier and challenge
-export async function generatePkce(): Promise<{ codeVerifier: string; codeChallenge: string }> {
-  const codeVerifier = generateRandomString(48);  // You can adjust the length as needed
+export async function generatePkce(tokenSize: number): Promise<{ codeVerifier: string; codeChallenge: string }> {
+  const codeVerifier = generateRandomString(tokenSize);  // You can adjust the length as needed
   const hashedVerifier = await sha256(codeVerifier);
   const codeChallenge = base64urlencode(hashedVerifier);
   return { codeVerifier, codeChallenge };
@@ -42,7 +42,7 @@ export async function generatePkceFromString(codeVerifier: string): Promise<{ co
 
 // Example usage
 (async () => {
-  const { codeVerifier, codeChallenge } = await generatePkce();
+  const { codeVerifier, codeChallenge } = await generatePkce(48);
   console.log("Code Verifier:", codeVerifier);
   console.log("Code Challenge:", codeChallenge);
 })();

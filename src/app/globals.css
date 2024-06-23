@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 /* 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -31,3 +33,34 @@ body {
     text-wrap: balance;
   }
 } */
+
+
+.light {
+  --background-bg: 200,250,240;
+  
+  --primary-text: 120,40,60;
+  --secondary-text: 70,100,60;
+
+  --text-area-bg: 190,245,240;
+  --text-area-text: 70,100,60;
+
+  --button-bg: 120,40,60;
+  --button-text: 200,250,240;
+  --button-bg-hover: 200,250,240;
+  --button-text-hover: 0,0,0;
+}
+
+.dark {
+  --background-bg: 200,250,240;
+  
+  --primary-text: 120,40,60;
+  --secondary-text: 70,100,60;
+
+  --text-area-bg: 190,245,240;
+  --text-area-text: 70,100,60;
+
+  --button-bg: 120,40,60;
+  --button-text: 200,250,240;
+  --button-bg-hover: 200,250,240;
+  --button-text-hover: 0,0,0;
+}

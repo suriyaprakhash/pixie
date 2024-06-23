@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { generatePkce } from "../util/PkceUtil";
 import { NextResponse } from "next/server";
 import { writeStringArray } from "../util/fileWriter";
+import Link from "next/link";
 
 function GenPage() {
     const limit: number = 1000;
@@ -12,18 +13,18 @@ function GenPage() {
     const [dataArray, setDataArray] = useState<{ cc: string, cv: string }[]>([]);
     const [lines, setLines] = useState<string[]>(['"Code Challenge","Code Verifier"']);
 
-    useEffect( () => {
+    useEffect(() => {
 
         const dataArray: { cc: string, cv: string }[] = [];
         async function handle(i: number) {
-            const res = await generatePkce();
+            const res = await generatePkce(48);
             dataArray.push({
                 cc: res.codeChallenge,
                 cv: res.codeVerifier
             })
             lines.push('"' + res.codeVerifier + '"' + ',' + '"' + res.codeChallenge + '"')
-            console.log(i + '-'+res.codeChallenge + ',' + res.codeVerifier)
-            if (i == limit-1) {
+            console.log(i + '-' + res.codeChallenge + ',' + res.codeVerifier)
+            if (i == limit - 1) {
                 setState('done')
                 setDataArray(dataArray)
                 setLines(lines)
@@ -47,7 +48,11 @@ function GenPage() {
 
 
 
-    return (<div>bulk {state} {dataArray?.length}</div>);
+    return (
+        <div className="h-[100vh] flex flex-row-2 items-center text-center align-middle justify-center bg-background-bg">
+            Bulk csv generation - {state}. No of records - {dataArray?.length}
+        </div>
+    );
 }
 
 export default GenPage;
