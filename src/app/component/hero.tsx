@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { generatePkce, generatePkceFromString } from '../util/PkceUtil';
 
-const hero = () => {
+const Hero = () => {
     const [codeVerifier, setCodeVerifier] = useState<string>();
     const [codeChallenge, setCodeChallenge] = useState<string>();
 
@@ -63,4 +63,4 @@ const hero = () => {
     )
 }
 
-export default hero
+export default Hero
