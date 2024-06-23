@@ -3,27 +3,51 @@
 import { useEffect, useState } from "react";
 import { generatePkce } from "../util/PkceUtil";
 import { NextResponse } from "next/server";
+import { writeStringArray } from "../util/fileWriter";
 
 function GenPage() {
+    const limit: number = 1000;
 
-    const [cv, setCV] = useState<string>();
-    const [cc, setCC] = useState<string>();
+    const [state, setState] = useState<string>();
+    const [dataArray, setDataArray] = useState<{ cc: string, cv: string }[]>([]);
+    const [lines, setLines] = useState<string[]>(['"Code Challenge","Code Verifier"']);
 
-    useEffect(() => {
-        const res = generatePkce();
-        res.then(data => {
-            setCV(data.codeVerifier)
-            setCC(data.codeChallenge)
+    useEffect( () => {
+
+        const dataArray: { cc: string, cv: string }[] = [];
+        async function handle(i: number) {
+            const res = await generatePkce();
+            dataArray.push({
+                cc: res.codeChallenge,
+                cv: res.codeVerifier
+            })
+            lines.push('"' + res.codeVerifier + '"' + ',' + '"' + res.codeChallenge + '"')
+            console.log(i + '-'+res.codeChallenge + ',' + res.codeVerifier)
+            if (i == limit-1) {
+                setState('done')
+                setDataArray(dataArray)
+                setLines(lines)
+                writeStringArray(lines, 'csv', 'pixie')
+            }
         }
-        );
-    }, []);
-
-    return JSON.stringify({
-        market: {
-            codeVerifier: cv,
-            codeChallenge: cc
+        for (let i = 0; i < limit; i++) {
+            handle(i);
+            // res.then(data => {
+            //     dataArray.push({
+            //         cc: data.codeChallenge,
+            //         cv: data.codeChallenge
+            //     })
         }
-    });
+        // for (let i =0 ; i< 100;i++) {
+        //     console.log(dataArray[i]?.cv + ',' + dataArray[i]?.cc)
+        // }
+    }
+        , []);
+
+
+
+
+    return (<div>bulk {state} {dataArray?.length}</div>);
 }
 
 export default GenPage;
