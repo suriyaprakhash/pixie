@@ -10,6 +10,19 @@ const nextConfig = {
   // poweredByHeader: false,
   // Use the CDN in production and localhost for development - https://www.jsdelivr.com/github
   assetPrefix: isProd ? 'https://cdn.jsdelivr.net/gh/suriyaprakhash/pixie-generator@gh-pages' : undefined,
+//   async headers() {
+//     return [
+//       { 
+//         source: '/bulk',
+//         headers: [
+//           {
+//             key: 'content-type',
+//             value: 'application/json',
+//           },
+//         ],
+//       },
+//     ]
+//   },
 }
 
 export default nextConfig;
