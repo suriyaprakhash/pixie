@@ -19,9 +19,10 @@ function Navbar() {
                 <Link className="" href="/">
                     <div className="text-2xl flex flex-row gap-2 items-center">
                         <Image src="/pixie-small.png" alt="pixie" width="48" height="48" />
-                        <p className="tracking-widest">
+                        <div className="tracking-widest">
                             PIXIE
-                        </p>
+                            <p className='font-semibold text-xs sm:block hidden'>PKCE code generator</p>
+                        </div>
                     </div>
                 </Link>
 
