@@ -26,19 +26,22 @@ function base64urlencode(arrayBuffer: ArrayBuffer): string {
 }
 
 // Function to generate PKCE code verifier and challenge
-export async function generatePkce(tokenSize: number): Promise<{ codeVerifier: string; codeChallenge: string }> {
-  const codeVerifier = generateRandomString(tokenSize);  // You can adjust the length as needed
-  const hashedVerifier = await sha256(codeVerifier);
-  const codeChallenge = base64urlencode(hashedVerifier);
-  return { codeVerifier, codeChallenge };
-}
+// export async function generatePkce(tokenSize: number): Promise<{ codeVerifier: string; codeChallenge: string }> {
+//   const codeVerifier = generateRandomString(tokenSize);  // You can adjust the length as needed
+//   const hashedVerifier = await sha256(codeVerifier);
+//   const codeChallenge = base64urlencode(hashedVerifier);
+//   return { codeVerifier, codeChallenge };
+// }
 
-// Function to generate PKCE code verifier and challenge
-export async function generatePkceFromString(codeVerifier: string): Promise<{ codeVerifier: string; codeChallenge: string }> {
-    const hashedVerifier = await sha256(codeVerifier);
-    const codeChallenge = base64urlencode(hashedVerifier);
-    return { codeVerifier, codeChallenge };
-  }
+export async function generatePkce(tokenSize: number = 43, codeVerifier?: string): Promise<{ codeVerifier: string; codeChallenge: string }> {
+  // Use the provided codeVerifier if available, otherwise generate a random one
+  const codeVerifierToUse = codeVerifier || generateRandomString(tokenSize);
+
+  const hashedVerifier = await sha256(codeVerifierToUse);
+  const codeChallenge = base64urlencode(hashedVerifier);
+
+  return { codeVerifier: codeVerifierToUse, codeChallenge };
+}
 
 // Example usage
 (async () => {

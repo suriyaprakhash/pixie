@@ -17,7 +17,7 @@ function GenPage() {
 
         const dataArray: { cc: string, cv: string }[] = [];
         async function handle(i: number) {
-            const res = await generatePkce(48);
+            const res = await generatePkce();
             dataArray.push({
                 cc: res.codeChallenge,
                 cv: res.codeVerifier

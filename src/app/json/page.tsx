@@ -10,7 +10,7 @@ function GenPage() {
     const [cc, setCC] = useState<string>();
 
     useEffect(() => {
-        const res = generatePkce(48);
+        const res = generatePkce();
         res.then(data => {
             setCV(data.codeVerifier)
             setCC(data.codeChallenge)
