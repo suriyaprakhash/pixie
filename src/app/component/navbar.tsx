@@ -18,10 +18,10 @@ function Navbar() {
             <div className="col-start-2 col-end-5">
                 <Link className="" href="/">
                     <div className="text-2xl flex flex-row gap-2 items-center">
-                        <Image src="/pixie.png" alt="pixie" width="48" height="48" />
-                        <div className='font-extrabold'>
+                        <Image src="/pixie-small.png" alt="pixie" width="48" height="48" />
+                        <p className="tracking-widest">
                             PIXIE
-                        </div>
+                        </p>
                     </div>
                 </Link>
 

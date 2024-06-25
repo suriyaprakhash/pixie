@@ -40,7 +40,7 @@ const Hero = () => {
     }
 
     return (
-        <div className="grid grid-cols-3 items-center h-[750px] sm:h-[76vh] overflow-auto pl-20 pr-20">
+        <div className="grid grid-cols-3 items-center h-[750px] sm:h-[76vh]  pl-20 pr-20">
             <section className='col-span-3 grid grid-cols-3'>
                 <div className='col-span-3 items-center text-center grid sm:grid-cols-3 sm:p-5 sm:gap-20 grid-cols-1'>
                     <label>Random Bytes to Generate Code Verifier</label>
