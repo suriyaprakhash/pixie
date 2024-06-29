@@ -45,33 +45,6 @@ function Bulkgen() {
 
     }
 
-    useEffect(() => {
-
-        // const noOfRecords: number = router.get('noOfRecords') ? Number(router.get('noOfRecords')) : 1000;
-        // const bulkTokenSize: number = router.get('bulkTokenSize') ? Number(router.get('bulkTokenSize')) : 43;
-
-        const dataArray: { cc: string, cv: string }[] = [];
-        async function handle(i: number) {
-            const res = await generatePkce(bulkTokenSize);
-            dataArray.push({
-                cc: res.codeChallenge,
-                cv: res.codeVerifier
-            })
-            lines.push('"' + res.codeVerifier + '"' + ',' + '"' + res.codeChallenge + '"')
-            console.log(i + '-' + res.codeChallenge + ',' + res.codeVerifier)
-            if (i == noOfRecords - 1) {
-                setState('done')
-                setDataArray(dataArray)
-                setLines(lines)
-                writeStringArray(lines, 'csv', 'pixie')
-            }
-        }
-        // for (let i = 0; i < noOfRecords; i++) {
-        //     handle(i);
-        // }
-    }
-        , []);
-    
     return (
         <div className='md:grid md:grid-cols-12 border-2 p-5 gap-5 hidden'>
             <label className='text-xl font-semibold col-span-12 p-5'>BULK DOWNLOAD</label>
