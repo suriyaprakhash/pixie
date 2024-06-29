@@ -41,7 +41,7 @@ const Hero = () => {
     }
 
     return (
-        <div className="grid grid-cols-3 items-center h-[750px] sm:h-[80vh] sm:pl-20 sm:pr-20 pl-10 pr-10 gap-10 sm:overflow-y-auto p-10">
+        <div className="grid grid-cols-3 items-center h-[750px] sm:h-[80vh] sm:pl-20 sm:pr-20 pl-10 pr-10 gap-10 overflow-y-auto p-10">
 
             <section className='col-span-3 grid grid-cols-3 gap-5 border-2 p-5'>
                 <label className='text-xl font-semibold col-span-5 p-5 '>QUICK GENERATOR</label>
