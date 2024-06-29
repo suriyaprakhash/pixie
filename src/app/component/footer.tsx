@@ -1,8 +1,8 @@
 function Footer() {
 
     return (
-        <section className="flex flex-col h-[150px] sm:h-[12vh] ">
-            <footer className="bg-white rounded-lg shadow m-4 dark:bg-white-800">
+        <section className="flex flex-col h-[150px] sm:h-[10vh]">
+            <footer className="rounded-lg shadow m-4 dark:bg-white-800">
                 <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
                     <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">©2024  <a href="https://suriyaprakhash.com/" target="_blank" className="hover:underline">
                         Suriya Prakhash Deenadayalan</a>. All Rights Reserved.

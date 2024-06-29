@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 import { generatePkce } from '../util/PkceUtil';
 import { Slider } from '@mui/material';
 import Link from 'next/link';
+import Bulkgen from './bulkgen';
 
 const Hero = () => {
 
     const [tokenSize, setTokenSize] = useState<number>(43);
-    const [bulkTokenSize, setBulkTokenSize] = useState<number>(43);
-    const [noOfRecords, setNoOfRecords] = useState<number>(6000);
+
 
     const [codeVerifier, setCodeVerifier] = useState<string>();
     const [codeChallenge, setCodeChallenge] = useState<string>();
@@ -34,30 +34,24 @@ const Hero = () => {
         setTokenSize(newValue as number)
     }
 
-    const handleBulkTokenSizeChange = (event: Event, newValue: number | number[]): void => {
-        setBulkTokenSize(newValue as number)
-    }
 
-    const handleNoOfRecordsChange = (event: Event, newValue: number | number[]): void => {
-        setNoOfRecords(newValue as number)
-    }
 
     const textChanged = (event: any) => {
         setCodeVerifier(event.target.value);
     }
 
     return (
-        <div className="grid grid-cols-3 items-center h-[750px] sm:h-[76vh] sm:pl-20 sm:pr-20 pl-10 pr-10 gap-10 sm:overflow-y-auto p-10">
+        <div className="grid grid-cols-3 items-center h-[750px] sm:h-[80vh] sm:pl-20 sm:pr-20 pl-10 pr-10 gap-10 sm:overflow-y-auto p-10">
+
             <section className='col-span-3 grid grid-cols-3 gap-5 border-2 p-5'>
                 <label className='text-xl font-semibold col-span-5 p-5 '>QUICK GENERATOR</label>
-                <div className='col-span-3 items-center text-center grid sm:grid-cols-4 gap-5 grid-cols-1'>
+                <div className='col-span-3 items-center text-center grid sm:grid-cols-3 gap-10 grid-cols-1'>
                     <label>Random Bytes to Generate Code Verifier</label>
                     <div className='p-5'>
-                        <Slider className="text-primary-text" max={96} min={32} valueLabelDisplay="on" 
-                            value={tokenSize}  onChange={handleTokenSizeChange} />
+                        <Slider className="text-primary-text" max={96} min={32} valueLabelDisplay="on"
+                            value={tokenSize} onChange={handleTokenSizeChange} />
                     </div>
                     <button className="border-r-8 border-l-8 bg-button-bg text-button-text p-3 hover:bg-button-bg-hover hover:text-button-text-hover" onClick={generate}>Generate Random</button>
-                    <button className="border-r-8 border-l-8 bg-button-bg text-button-text p-3 hover:bg-button-bg-hover hover:text-button-text-hover" onClick={generateChallenge} >Get Challenge</button>
                 </div>
                 <div className='col-span-3 p-2'>
                     <div className='grid grid-cols-12 gap-3'>
@@ -67,6 +61,9 @@ const Hero = () => {
                         </svg>
                         <textarea className='col-span-12 p-3 text-text-area-text bg-text-area-bg' placeholder='Type in your code verifier or Click Generate Random to generate new' value={codeVerifier} onChange={textChanged}></textarea>
                     </div>
+                </div>
+                <div className='col-span-3 p-2'>
+                    <button className="w-full border-r-8 border-l-8 bg-button-bg text-button-text p-3 hover:bg-button-bg-hover hover:text-button-text-hover" onClick={generateChallenge} >Get Challenge</button>
                 </div>
                 <div className='col-span-3 p-2'>
                     <div className='grid grid-cols-12 gap-3'>
@@ -80,19 +77,8 @@ const Hero = () => {
                 </div>
             </section>
 
-            <section className='col-span-3 md:grid md:grid-cols-12 border-2 p-5 gap-3 hidden'>
-                <label className='text-xl font-semibold col-span-12 p-5'>BULK DOWNLOAD</label>
-                <label className='col-span-2'>No of records</label>
-                <div className='col-span-3'>
-                    <Slider className="text-primary-text" max={10000} min={1} valueLabelDisplay="auto" value={noOfRecords} onChange={handleNoOfRecordsChange} />
-                </div>
-                <label className='col-span-2'>Random byte size</label>
-                <div className='col-span-3'>
-                    <Slider className="text-primary-text" max={96} min={32} valueLabelDisplay="auto" value={bulkTokenSize} onChange={handleBulkTokenSizeChange} />
-                </div>
-                <button className="col-span-2 border-r-8 border-l-8 bg-button-bg text-button-text p-3 hover:bg-button-bg-hover hover:text-button-text-hover">
-                    <Link className="" href= {'/bulk?noOfRecords=' + noOfRecords + '&bulkTokenSize=' + bulkTokenSize} >Download CSV</Link>  
-                </button>
+            <section className='col-span-3 '>
+                <Bulkgen/>
             </section>
 
             <section className='col-span-3  md:grid md:grid-cols-12 border-2 p-5 gap-3 hidden '>

@@ -14,7 +14,7 @@ function Navbar() {
     };
 
     return (
-        <nav className="h-[100px] sm:h-[12vh] grid grid-cols-12 items-center shadow-xl">
+        <nav className="h-[100px] sm:h-[10vh] grid grid-cols-12 items-center">
             <div className="col-start-2 col-end-5">
                 <Link className="" href="/">
                     <div className="text-2xl flex flex-row gap-2 items-center">

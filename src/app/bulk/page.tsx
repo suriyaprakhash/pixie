@@ -1,29 +1,38 @@
 'use client'
-
 import { useEffect, useState } from "react";
 import { generatePkce } from "../util/PkceUtil";
-import { NextResponse } from "next/server";
 import { writeStringArray } from "../util/fileWriter";
 import Link from "next/link";
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+// import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+
 
 function GenPage() {
 
 
-    const router: ReadonlyURLSearchParams = useSearchParams()
+    // const router: ReadonlyURLSearchParams = useSearchParams()
 
-    console.log(router.get('noOfRecords'))
-    console.log(router.get('bulkTokenSize'))
+    // console.log(router.get('noOfRecords'))
+    // console.log(router.get('bulkTokenSize'))
 
-    const noOfRecords: number = router.get('noOfRecords') ? Number(router.get('noOfRecords')) : 1000;
-    const bulkTokenSize: number = router.get('bulkTokenSize') ? Number(router.get('bulkTokenSize')) : 43;
+
+
+    // const params = useParams<{ tag: string; item: string }>()
+
+    // console.log(params.tag)
+
+    const noOfRecords = 43;
+    const bulkTokenSize = 1000;
 
     const [state, setState] = useState<string>();
     const [dataArray, setDataArray] = useState<{ cc: string, cv: string }[]>([]);
     const [lines, setLines] = useState<string[]>(['"Code Challenge","Code Verifier"']);
 
+
     useEffect(() => {
+
+        // const noOfRecords: number = router.get('noOfRecords') ? Number(router.get('noOfRecords')) : 1000;
+        // const bulkTokenSize: number = router.get('bulkTokenSize') ? Number(router.get('bulkTokenSize')) : 43;
 
         const dataArray: { cc: string, cv: string }[] = [];
         async function handle(i: number) {
@@ -41,9 +50,9 @@ function GenPage() {
                 writeStringArray(lines, 'csv', 'pixie')
             }
         }
-        for (let i = 0; i < noOfRecords; i++) {
-            handle(i);
-        }
+        // for (let i = 0; i < noOfRecords; i++) {
+        //     handle(i);
+        // }
     }
         , []);
 
