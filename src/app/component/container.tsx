@@ -30,7 +30,7 @@ const Container = () => {
 
   return (
     <main className={theme}>
-      <section className="bg-background-bg text-primary-text items-center justify-between">
+      <section className="bg-background-bg text-primary-text items-center justify-between ">
         <Navbar ></Navbar>
         <Hero></Hero>
         <Footer></Footer>

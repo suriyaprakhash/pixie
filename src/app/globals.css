@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+
 /* 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -63,4 +64,30 @@ body {
   --button-text: 200,250,240;
   --button-bg-hover: 200,250,240;
   --button-text-hover: 0,0,0;
+}
+
+
+
+
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary-text) var(--primary-text);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary-text);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-text);
+  border-radius: 14px;
+  border: 3px solid var(--primary-text);
 }

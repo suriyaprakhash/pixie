@@ -14,14 +14,14 @@ function Navbar() {
     };
 
     return (
-        <nav className="h-[100px] sm:h-[12vh] grid grid-cols-12 items-center">
+        <nav className="h-[100px] sm:h-[12vh] grid grid-cols-12 items-center shadow-xl">
             <div className="col-start-2 col-end-5">
                 <Link className="" href="/">
                     <div className="text-2xl flex flex-row gap-2 items-center">
                         <Image src="/pixie-small.png" alt="pixie" width="48" height="48" />
-                        <div className="tracking-widest">
+                        <div className="tracking-widest font-extrabold">
                             PIXIE
-                            <p className='font-semibold text-xs sm:block hidden'>PKCE code generator</p>
+                            <p className='font-semibold text-xs sm:block hidden'>PKCE GENERATOR</p>
                         </div>
                     </div>
                 </Link>

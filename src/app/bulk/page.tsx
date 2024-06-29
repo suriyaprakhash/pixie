@@ -5,9 +5,19 @@ import { generatePkce } from "../util/PkceUtil";
 import { NextResponse } from "next/server";
 import { writeStringArray } from "../util/fileWriter";
 import Link from "next/link";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 
 function GenPage() {
-    const limit: number = 1000;
+
+
+    const router: ReadonlyURLSearchParams = useSearchParams()
+
+    console.log(router.get('noOfRecords'))
+    console.log(router.get('bulkTokenSize'))
+
+    const noOfRecords: number = router.get('noOfRecords') ? Number(router.get('noOfRecords')) : 1000;
+    const bulkTokenSize: number = router.get('bulkTokenSize') ? Number(router.get('bulkTokenSize')) : 43;
 
     const [state, setState] = useState<string>();
     const [dataArray, setDataArray] = useState<{ cc: string, cv: string }[]>([]);
@@ -17,40 +27,35 @@ function GenPage() {
 
         const dataArray: { cc: string, cv: string }[] = [];
         async function handle(i: number) {
-            const res = await generatePkce();
+            const res = await generatePkce(bulkTokenSize);
             dataArray.push({
                 cc: res.codeChallenge,
                 cv: res.codeVerifier
             })
             lines.push('"' + res.codeVerifier + '"' + ',' + '"' + res.codeChallenge + '"')
             console.log(i + '-' + res.codeChallenge + ',' + res.codeVerifier)
-            if (i == limit - 1) {
+            if (i == noOfRecords - 1) {
                 setState('done')
                 setDataArray(dataArray)
                 setLines(lines)
                 writeStringArray(lines, 'csv', 'pixie')
             }
         }
-        for (let i = 0; i < limit; i++) {
+        for (let i = 0; i < noOfRecords; i++) {
             handle(i);
-            // res.then(data => {
-            //     dataArray.push({
-            //         cc: data.codeChallenge,
-            //         cv: data.codeChallenge
-            //     })
         }
-        // for (let i =0 ; i< 100;i++) {
-        //     console.log(dataArray[i]?.cv + ',' + dataArray[i]?.cc)
-        // }
     }
         , []);
 
 
-
-
     return (
-        <div className="h-[100vh] flex flex-row-2 items-center text-center align-middle justify-center bg-background-bg">
+        <div className="h-[100vh] flex flex-col gap-5 items-center text-center align-middle justify-center bg-background-bg">
             Bulk csv generation - {state}. No of records - {dataArray?.length}
+            <button>
+                <Link href="/">
+                    Go Back
+                </Link>
+            </button>
         </div>
     );
 }
