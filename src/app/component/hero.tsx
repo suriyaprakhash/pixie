@@ -84,7 +84,7 @@ const Hero = () => {
             <section className='col-span-3  md:grid md:grid-cols-12 border-2 p-5 gap-3 hidden '>
                 <label className='text-xl font-semibold col-span-12 p-5'>REST API</label>
                 <div className='col-span-12'>
-                    <Link className="" href="http://api.pixie.suriyaprakhash.com/" target="_blank">
+                    <Link className="" href="https://pixie-api.suriyaprakhash.com/" target="_blank">
                         <button className="w-full border-r-8 border-l-8 bg-button-bg text-button-text p-3 hover:bg-button-bg-hover hover:text-button-text-hover">
                             GET JSON
                         </button>
